@@ -15,7 +15,7 @@ const Services = () => {
               <img
                 src={service.icon}
                 alt={service.title}
-                className="w-20 h-20 object-contain mb-4" // Ensures all images are the same size
+                className="w-20 h-20 object-contain mb-4" 
               />
               <h2 className="text-2xl font-semibold text-orange-400 mb-2">{service.title}</h2>
               <p className="text-gray-300">{service.description}</p>
