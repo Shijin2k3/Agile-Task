@@ -1,6 +1,7 @@
 import React from 'react'
-import { FaEnvelope, FaPhone } from 'react-icons/fa'
+import { FaEnvelope, FaPhone , FaHome, FaInfoCircle, FaServicestack } from 'react-icons/fa'
 import { FaMapMarkerAlt } from 'react-icons/fa'
+import {Link} from 'react-scroll'
 
 const Contact = () => {
   return (
@@ -23,39 +24,31 @@ const Contact = () => {
                 <FaMapMarkerAlt className="text-orange-400 text-xl mr-3" />
                 <span className="text-base md:text-lg">Bangalore, India</span>
               </div>
-            </div>
-            <div className="text-gray-400 text-xs md:text-sm mt-6 md:mt-0 text-center md:text-left">
-              &copy; {new Date().getFullYear()} Agile Job. All rights reserved.
-            </div>
+            </div> 
           </div>
           {/* Contact Form */}
-          <div className="w-full md:w-1/2 bg-black/60 p-8 flex flex-col justify-center">
-            <form className="space-y-5">
-              <input
-                type="text"
-                placeholder="Your Name"
-                className="w-full px-4 py-2 rounded bg-gray-800 text-white border border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-400"
-              />
-              <input
-                type="email"
-                placeholder="Your Email"
-                className="w-full px-4 py-2 rounded bg-gray-800 text-white border border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-400"
-              />
-              <textarea
-                placeholder="Your Message"
-                rows={4}
-                className="w-full px-4 py-2 rounded bg-gray-800 text-white border border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-400"
-              />
-              <button
-                type="submit"
-                className="w-full py-2 rounded bg-orange-400 text-black font-semibold hover:bg-orange-300 transition-all duration-200"
-              >
-                Send Message
-              </button>
-            </form>
+          <div className="w-full bg-black/60 md:w-1/2 flex flex-col justify-center items-center md:items-start p-8">
+            <div className="mb-6">
+              <div className="flex items-center mb-4 cursor-pointer">
+                  <FaHome className="text-orange-400 text-xl mr-3" />
+                  <Link to='home' spy={true} offset={-100} smooth={true} className="text-base md:text-lg break-all">Home</Link>
+                </div>
+                <div className="flex items-center mb-4 cursor-pointer">
+                  <FaInfoCircle className="text-orange-400 text-xl mr-3" />
+                  <Link to='about' spy={true} offset={-100} smooth={true} className="text-base md:text-lg">About Us</Link>
+                </div>
+                <div className="flex items-center cursor-pointer">
+                  <FaServicestack className="text-orange-400 text-xl mr-3" />
+                  <Link to='services' spy={true} offset={-100} smooth={true} className="text-base md:text-lg">Services</Link>
+                </div>
+                </div>
+             </div>
           </div>
-        </div>
       </div>
+       <div className="text-gray-400 flex items-center justify-center text-xs md:text-sm mt-6 md:mt-10 text-center md:text-left">
+         <p> &copy; {new Date().getFullYear()} Agile Job. All rights reserved.</p>
+             
+       </div>
     </section>
   )
 }

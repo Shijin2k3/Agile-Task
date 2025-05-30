@@ -14,7 +14,7 @@ const Navbar = ({openNav}) => {
             <div className='hidden lg:flex items-center space-x-10'>
                  {navItems.map(({link,path})=>(
                 <Link key={path} className="relative uppercase text-white text-base font-medium w-fit block hover:text-orange-400 cursor-pointer"
-                to={path} spy={true} offset={-100} smooth={true} activeClass='text-orange-400'>{link}</Link>
+                to={path} spy={true} offset={-100} smooth={true} activeClass="!text-orange-400 font-bold ">{link}</Link>
               ))}   
             </div>
             <div className=' flex items-center lg:hidden'> 
