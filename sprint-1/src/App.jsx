@@ -5,6 +5,8 @@ import MobileNav from './components/navbar/MobileNav'
 import ResponsiveNav from './components/navbar/ResponsiveNav'
 import Hero from './components/hero/Hero'
 import About from './components/about/About'
+import Services from './components/services/Services'
+import Contact from './components/contact/Contact'
 
 function App() {
 
@@ -15,6 +17,8 @@ function App() {
       <ResponsiveNav/>
       <Hero/>
       <About/>
+      <Services/>
+      <Contact/>
     </div>
     
     
