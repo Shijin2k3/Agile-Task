@@ -1,5 +1,6 @@
 import React from 'react'
 import {services} from '../../data/data'
+import { motion } from 'framer-motion'
 
 const Services = () => {
   return (
@@ -17,8 +18,10 @@ const Services = () => {
                 alt={service.title}
                 className="w-20 h-20 object-contain mb-4" 
               />
-              <h2 className="text-2xl font-semibold text-orange-400 mb-2">{service.title}</h2>
-              <p className="text-gray-300">{service.description}</p>
+              <motion.h2 whileInView={{opacity:1,x:0}} initial={{opacity:0,x:-40}} transition={{duration:1}}
+              className="text-2xl font-semibold text-orange-400 mb-2">{service.title}</motion.h2>
+              <motion.p whileInView={{opacity:1,x:0}} initial={{opacity:0,x:40}} transition={{duration:1}}
+              className="text-gray-300">{service.description}</motion.p>
           </div>
           ))}
         </div>
