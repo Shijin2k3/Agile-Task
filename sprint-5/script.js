@@ -1,54 +1,112 @@
-const studentInput=document.getElementById("stud-input");
-const addStudentButton=document.getElementById("add-stud");
-const studentList=document.getElementById("stud-list");
+const input=document.getElementById('stud-input');
+const addBtn=document.getElementById('add-stud');
+const todoList=document.getElementById('stud-list');
+const searchInput = document.getElementById('search-input');
+const searchBtn = document.getElementById('search-btn');
+const clearAllBtn = document.getElementById('clear-all');
+const countDiv = document.getElementById('stud-count');
 
-addStudentButton.addEventListener("click",(e)=>{
+let list=[];
+let filteredList =[];
+
+
+const renderList =(data = list)=>{
+    todoList.innerHTML = '';
+        data.forEach(function(item) {
+            const todoItem = document.createElement('li');
+            todoItem.classList.add('todo-item')
+            todoItem.innerHTML = `
+                <span>${item}</span>
+                <div class="actions">
+                    <img src='./img/edit.png' alt='edit' />
+                    <img src='./img/delete.png' class="delete" alt='delete' />
+                </div>
+            `;
+            todoList.appendChild(todoItem);
+        }); 
+        countDiv.textContent = `Total Students: ${list.length}`;
+}
+
+addBtn.addEventListener('click',function(e){
     e.preventDefault();
-    const name=studentInput.value.trim();
-    if(name === ''){
-        return alert("Please enter a name")
+    const text=input.value.trim();
+    if(text === ''){
+        alert('please enter a todo item');
     }
-    const li = document.createElement('li');
-    li.innerHTML=`
-      <span>${name}</span>
-      <div class="actions">
-          <button class="edit">Edit</button>
-          <button class="delete">X</button>
-      </div>
-    `;
-    studentList.appendChild(li);
-    studentInput.value="";
+    else {
+        list.push(text);
+        input.value = '';
+        renderList();
+    }
 })
-studentList.addEventListener("click",(e)=>{
-    const target=e.target;
-    const li=target.closest('li');
-    if(!li) return;
-    if(target.classList.contains('delete')){
-        li.remove();
+//search input
+searchInput.addEventListener('input',function(e){
+    const query=searchInput.value.trim().toLowerCase();
+    if (query === '') {
+        renderList();
+    } else {
+        filteredList = list.filter(item => item.toLowerCase().includes(query));
+        renderList(filteredList);
     }
-    else if(target.classList.contains('edit')){
-        const span=li.querySelector('span');
-       if (!span) return;
-        // Inline edit: replace span with input
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.value = span.textContent;
-        input.className = 'edit-input';
-        span.replaceWith(input);
-        input.focus();
+})
+//click search button
+searchBtn.addEventListener('click', function() {
+    const query = searchInput.value.trim().toLowerCase();
+    if (query === '') {
+        renderList();
+    } else {
+        filteredList = list.filter(item => item.toLowerCase().includes(query));
+        renderList(filteredList);
+    }
+});
+//clear all
+clearAllBtn.addEventListener('click', function() {
+    if(list.length === 0){
+        alert('No students to clear !')
+    }
+    else if(confirm('Are you sure you want to clear all students?')) {
+        list = [];
+        renderList();
+    }
+});
 
-        function saveEdit() {
-            const newValue = input.value.trim();
-            const newSpan = document.createElement('span');
-            newSpan.textContent = newValue || span.textContent;
-            newSpan.style.flexGrow = 1;
-            input.replaceWith(newSpan);
+
+todoList.addEventListener('click',function(e){
+    const target=e.target;
+    const todoItem=target.closest('.todo-item');
+    if(!todoItem) return;
+    
+    const isSearching = searchInput.value.trim() !== '';
+    const currentList = isSearching ? filteredList : list;
+    const index = Array.from(todoList.children).indexOf(todoItem);
+
+    if (target.alt === 'delete') {
+        const itemToRemove = currentList[index];
+        list = list.filter(item => item !== itemToRemove);
+       
+        if (isSearching) {
+            filteredList = list.filter(item => item.toLowerCase().includes(searchInput.value.trim().toLowerCase()));
+            renderList(filteredList);
+        } else {
+            renderList();
         }
-        input.addEventListener('blur', saveEdit);
-        input.addEventListener('keydown', (event) => {
-            if(event.key === 'Enter') {
-                input.blur();
+    } else if (target.alt === 'edit') {
+        const currentValue = currentList[index];
+        const newValue = prompt('Edit your todo item:', currentValue);
+        if (newValue !== null && newValue.trim() !== '') {
+            const mainIndex = list.indexOf(currentValue);
+            if (mainIndex !== -1) {
+                list[mainIndex] = newValue.trim();
             }
-        });
+            if (isSearching) {
+                filteredList = list.filter(item => item.toLowerCase().includes(searchInput.value.trim().toLowerCase()));
+                renderList(filteredList);
+            } else {
+                renderList();
+            }
+        }
     }
-})
+});
+
+
+renderList();

@@ -7,15 +7,24 @@
     <title>Todo</title>
 </head>
 <body>
+    <div class="app">
     <div class="container">
         <h1> Student List</h1>
         <form action="" class="stud-form">
            <input type="text" id="stud-input" placeholder="Enter a student name">
            <button type="submit" id="add-stud" class="todo-btn"> Add Student</button>
         </form>
-        <ul id="stud-list" >
+       <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search students...">
+            <button id="search-btn" type="button">Search</button>
+            <button id="clear-all" type="button">Clear All</button>
+        </div>
+        <div id="stud-count"></div>
+    </div>
+    <div class="todo-container">
+         <ul id="stud-list" >
         </ul>
-       
+    </div>
     </div>
     
 
