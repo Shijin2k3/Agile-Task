@@ -16,18 +16,18 @@ const validateForm=()=>{
         nameError.textContent="";
      }
      if(userAge.value.trim() === ""){
-        ageError.textContent="Age is Required";
+        ageError.textContent="*Age is Required";
         isValid=false;
      }
      else if(isNaN(userAge.value)){
-        ageError.textContent="Age must be a number";
+        ageError.textContent="*Age must be a number";
         isValid=false;
      }
      else{
         ageError.textContent="";
      }
      if(userDep.value.trim()=== ""){
-        depError.textContent="Department is required";
+        depError.textContent="*Department is required";
         isValid=false;
      }
      else{
