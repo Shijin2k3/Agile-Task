@@ -29,7 +29,7 @@ const cardData = [
 
 const DashboardCards = () => {
   return (
-    <Grid container spacing={{ xs: 2, sm: 4, md: 5 }} sx={{ p: { xs: 1, sm: 2, md: 4 } }}>
+    <Grid container spacing={{ xs: 2, sm: 4, md: 7 }} sx={{ py: { xs: 1, sm: 2, md: 4 } }} >
       {cardData.map((item, idx) => (
         <Grid item xs={12} sm={6} md={3} key={idx}>
           <Paper elevation={3} sx={{ ...cardStyle, backgroundColor: item.bgcolor, color: item.color }}>
