@@ -33,7 +33,7 @@ addBtn.addEventListener('click',function(e){
     e.preventDefault();
     const text=input.value.trim();
     if(text === ''){
-        alert('please enter a todo item');
+        alert('please enter a student name ');
     }
       else if(list.some(item => item.toLowerCase() === text.toLowerCase())) {
         alert('Duplicate student name not allowed!');

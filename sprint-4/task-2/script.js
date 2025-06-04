@@ -25,6 +25,9 @@ addBtn.addEventListener('click',function(e){
     if(text === ''){
         alert('please enter a todo item');
     }
+     else if(list.some(item => item.toLowerCase() === text.toLowerCase())) {
+        alert('Duplicate value not allowed!');
+     }
     else {
         list.push(text);
         input.value = '';
