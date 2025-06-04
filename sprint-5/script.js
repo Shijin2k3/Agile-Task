@@ -12,9 +12,11 @@ let filteredList =[];
 
 const renderList =(data = list)=>{
     todoList.innerHTML = '';
-        data.forEach(function(item) {
+        data.forEach(function(item, idx) {
             const todoItem = document.createElement('li');
-            todoItem.classList.add('todo-item')
+            todoItem.classList.add('todo-item');
+            todoItem.setAttribute('draggable', 'true');
+            todoItem.setAttribute('data-index', idx); 
             todoItem.innerHTML = `
                 <span>${item}</span>
                 <div class="actions">
@@ -32,6 +34,9 @@ addBtn.addEventListener('click',function(e){
     const text=input.value.trim();
     if(text === ''){
         alert('please enter a todo item');
+    }
+      else if(list.some(item => item.toLowerCase() === text.toLowerCase())) {
+        alert('Duplicate student name not allowed!');
     }
     else {
         list.push(text);
@@ -69,6 +74,54 @@ clearAllBtn.addEventListener('click', function() {
         renderList();
     }
 });
+
+
+
+let dragSrcIndex = null;
+
+todoList.addEventListener('dragstart', function(e) {
+    const li = e.target.closest('.todo-item');
+    if (!li) return;
+    dragSrcIndex = Number(li.getAttribute('data-index'));
+    li.classList.add('dragging');
+});
+
+todoList.addEventListener('dragover', function(e) {
+    e.preventDefault();
+    const li = e.target.closest('.todo-item');
+    if (!li) return;
+    li.classList.add('drag-over');
+});
+
+todoList.addEventListener('dragleave', function(e) {
+    const li = e.target.closest('.todo-item');
+    if (!li) return;
+    li.classList.remove('drag-over');
+});
+
+todoList.addEventListener('drop', function(e) {
+    e.preventDefault();
+    const li = e.target.closest('.todo-item');
+    if (!li) return;
+    li.classList.remove('drag-over');
+    const dropIndex = Number(li.getAttribute('data-index'));
+    if (dragSrcIndex === null || dragSrcIndex === dropIndex) return;
+
+    
+    const [moved] = list.splice(dragSrcIndex, 1);
+    list.splice(dropIndex, 0, moved);
+
+    renderList();
+    dragSrcIndex = null;
+});
+
+todoList.addEventListener('dragend', function(e) {
+    const li = e.target.closest('.todo-item');
+    if (!li) return;
+    li.classList.remove('dragging');
+});
+
+
 
 
 todoList.addEventListener('click',function(e){

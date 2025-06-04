@@ -162,6 +162,12 @@
     font-weight: bold;
     letter-spacing: 1px;
 }
+.todo-item.dragging {
+    opacity: 0.5;
+}
+.todo-item.drag-over {
+    border: 2px dashed #007bff;
+}
 @media (max-width: 900px) {
     .container,
     .todo-container,
