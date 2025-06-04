@@ -7,33 +7,33 @@ const ageError=document.getElementById("ageError");
 const depError=document.getElementById("depError");
 
 const validateForm=()=>{
-     let isValid=true;
+     let flag=true;
      if(userName.value.trim() === ""){
         nameError.textContent="Name is required"
-        isValid=false;
+        flag=false;
      }
      else{
         nameError.textContent="";
      }
      if(userAge.value.trim() === ""){
         ageError.textContent="*Age is Required";
-        isValid=false;
+        flag=false;
      }
      else if(isNaN(userAge.value)){
         ageError.textContent="*Age must be a number";
-        isValid=false;
+        flag=false;
      }
      else{
         ageError.textContent="";
      }
      if(userDep.value.trim()=== ""){
         depError.textContent="*Department is required";
-        isValid=false;
+        flag=false;
      }
      else{
         depError.textContent="";
      }
-     return isValid;
+     return flag;
 
 }
 submitBtn.addEventListener("click",(e)=>{
