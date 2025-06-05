@@ -23,10 +23,8 @@ const Navbar = () => {
           "relative flex items-center" + (isActive ? " text-blue-700" : "")
         }
       >
-        <FaShoppingCart className="text-2xl cursor-pointer" />
-        <div className="absolute -top-2 -right-2 w-4 text-xs bg-blue-700 text-white flex items-center justify-center rounded-full">
-          1
-        </div>
+        <FaShoppingCart className="text-2xl cursor-pointer  md:mr-4" />
+        
       </NavLink>
 
 
