@@ -14,11 +14,11 @@ const Contact = () => {
             <div className="mb-6">
               <div className="flex items-center mb-4">
                 <FaEnvelope className="text-orange-400 text-xl mr-3" />
-                <span className="text-base md:text-lg break-all"><a href="mailto:contact@agilejob.com">contact@agilejob.com</a></span>
+                <span className="text-base md:text-lg break-all"><a href="mailto:info@example.com">info@example.com</a></span>
               </div>
               <div className="flex items-center mb-4">
                 <FaPhone className="text-orange-400 text-xl mr-3" />
-                <span className="text-base md:text-lg">+91-9876543210</span>
+                <a href="tel:+1234567890" className="text-base md:text-lg"> +1234567890</a>
               </div>
               <div className="flex items-center">
                 <FaMapMarkerAlt className="text-orange-400 text-xl mr-3" />
